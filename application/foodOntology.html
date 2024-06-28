@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap library -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Food Rwanda ontology</title>
+  </head>
+  <body>
+    <div class="container-fluid p-2">
+      <!-- layouts -->
+      <div class="shadow-lg bg-dark rounded-lg text-center p-5">
+        <h1 class="text-white fw-bold text-uppercase">
+          Welcome to Rwanda Food ontology
+        </h1>
+      </div>
+      <div class="container">
+        <div
+          class="d-flex flex-column gap-2 flex-sm-row justify-content-between my-3"
+        >
+          <select
+            style="width: 100%"
+            class="form-select"
+            aria-label="Default select example"
+            id="dropOptions"
+          >
+            <option value="" selected>Choose an option</option>
+            <option value="1">
+              Show all the classes, subclasses, instances
+            </option>
+            <option value="2">Name of all the foods in ascending order</option>
+            <option value="3">Name of all the foods in descending order</option>
+          </select>
+
+          <div class="w-100 form-group mx-2">
+            <input
+              id="inputSeacrh"
+              type="text"
+              placeholder="Search food"
+              class="form-control"
+            />
+          </div>
+          <button
+            style="width: 100%"
+            data-bs-toggle="modal"
+            data-bs-target="#modalAddFood"
+            data-bs-whatever="@mdo"
+            class="p-0 px-2 d-flex align-items-center justify-content-center form-control btn btn-primary"
+          >
+            <i
+              class="bi bi-plus text-white fw-bold"
+              style="font-size: 1.5rem"
+            ></i>
+            New food
+          </button>
+        </div>
+
+        <!-- List group -->
+        <div class="result"></div>
+
+        <!-- Endpoint query -->
+        <div class="d-flex flex-column align-items-start">
+          <div class="text-center p-2 mt-3">
+            <h2 class="text-dark fw-bold text-uppercase">
+              Interface to query the KG using SPARQL endpoint
+            </h2>
+          </div>
+          <div class="w-100 mb-1">
+            <input
+              id="endPoint"
+              class="form-control"
+              value="/food/sparql"
+              disabled
+            />
+          </div>
+          <div class="w-100">
+            <div class="w-100">
+              <textarea class="text-dark w-100" rows="12" id="query"></textarea>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button
+                id="submitQuery"
+                class="p-0 px-4 btn btn-secondary d-flex align-items-center"
+              >
+                Run <i class="bi bi-play-fill fs-3 ms-1 text-white"></i>
+              </button>
+            </div>
+          </div>
+          <div class="resultSparql w-100"></div>
+        </div>
+        <input type="hidden" id="food_uri" />
+        <!-- Modal to add food -->
+        <div
+          class="modal fade"
+          id="modalAddFood"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Food addition form
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div class="d-flex justify-content-center">
+                  <div class="w-100">
+                    <div class="mb-2">
+                      <label for="foodName" class="form-label"
+                        >Food name <span class="text-danger">*</span></label
+                      >
+                      <input
+                        id="foodName"
+                        placeholder="Eru and Wata"
+                        type="text"
+                        class="form-control"
+                        id="foodName"
+                      />
+                      <small id="provideFN" class="ms-2 text-danger"></small>
+                    </div>
+                    <div class="">
+                      <label for="foodDescription" class="form-label"
+                        >Food description</label
+                      >
+                      <textarea
+                        rows="5"
+                        id="foodDescription"
+                        class="form-control"
+                      ></textarea>
+                    </div>
+                    <div class="mb-1">
+                      <span
+                        data-bs-toggle="modal"
+                        data-bs-target="#modalAddEngredient"
+                        data-bs-whatever="@mdo"
+                        role="button"
+                        class="d-flex align-items-center text-primary"
+                      >
+                        <i
+                          class="bi bi-plus text-primary fw-bold"
+                          style="font-size: 1.5rem"
+                        ></i>
+                        Add an ingredient
+                        <span class="text-danger">*</span></span
+                      >
+                      <small id="provideEn" class="ms-2 text-danger"></small>
+                    </div>
+                    <ul class="row row-cols-3" id="ingredients"></ul>
+                    <hr />
+                    <div class="d-flex flex-column align-items-start mb-1">
+                      <span
+                        data-bs-toggle="modal"
+                        data-bs-target="#modalAddComponent"
+                        data-bs-whatever="@mdo"
+                        role="button"
+                        class="d-flex align-items-center text-primary"
+                      >
+                        <i
+                          class="bi bi-plus text-primary fw-bold"
+                          style="font-size: 1.5rem"
+                        ></i>
+                        Add a component <span class="text-danger">*</span>
+                      </span>
+                      <small id="provideCmp" class="ms-2 text-danger"></small>
+                    </div>
+                    <ul class="row row-cols-3" id="components"></ul>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button id="saveData" type="button" class="btn btn-primary">
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal add engredient -->
+        <div
+          class="modal fade"
+          id="modalAddEngredient"
+          tabindex="-1"
+          aria-labelledby="example2ModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <form>
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="example2ModalLabel">
+                    New ingredient
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <div class="d-flex justify-content-center">
+                    <div class="w-100">
+                      <div class="mb-3" id="engredientSelect">
+                        <label>Type of engredient</label>
+                        <select
+                          style="width: 100%"
+                          class="form-select"
+                          aria-label="Default select example"
+                          id="selectEn"
+                        >
+                          <option value="">Select value</option>
+                          <option value="other">Other</option>
+                        </select>
+                      </div>
+                      <div class="">
+                        <label for="foodName" class="form-label"
+                          >Engredient name</label
+                        >
+                        <input
+                          required
+                          id="engredientName"
+                          placeholder="Onien"
+                          type="text"
+                          class="form-control"
+                          id="engredientName"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    class="btn btn-secondary"
+                    data-bs-target="#modalAddFood"
+                    data-bs-toggle="modal"
+                  >
+                    Retour
+                  </button>
+
+                  <button id="saveEng" type="submit" class="btn btn-primary">
+                    Add
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal add component -->
+        <div
+          class="modal fade"
+          id="modalAddComponent"
+          tabindex="-1"
+          aria-labelledby="example3ModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <form>
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="example3ModalLabel">
+                    New component
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <div class="d-flex justify-content-center">
+                    <div class="w-100">
+                      <div class="mb-3" id="componentSelect">
+                        <label>Type of component</label>
+                        <select
+                          style="width: 100%"
+                          class="form-select"
+                          aria-label="Default select example"
+                          id="selectCmp"
+                        >
+                          <option value="">Select value</option>
+                          <option value="other">Other</option>
+                        </select>
+                      </div>
+                      <div class="">
+                        <label for="componentName" class="form-label"
+                          >Component name</label
+                        >
+                        <input
+                          required
+                          id="componentName"
+                          placeholder="Vitamin E"
+                          type="text"
+                          class="form-control"
+                          id="componentName"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    class="btn btn-secondary"
+                    data-bs-target="#modalAddFood"
+                    data-bs-toggle="modal"
+                  >
+                    Retour
+                  </button>
+
+                  <button id="saveCmp" type="submit" class="btn btn-primary">
+                    Add
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal add details -->
+        <!-- <div
+          class="modal fade"
+          id="modalDetails"
+          tabindex="-1"
+          aria-labelledby="example3ModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+              <form>
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="example3ModalLabel">
+                    <span id="foodDetailName"></span>"Food details"
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <div
+                    class="d-flex flex-column justify-content-center align-items-start"
+                  >
+                      <img
+                        width="300px"
+                        height="300px"
+                        style="
+                          white-space: nowrap;
+                          overflow: hidden;
+                          text-overflow: ellipsis;
+                        "
+                        src="https://github.com/jiofidelus/tsotsa/blob/main/TSOTSAImg_dataset/Rwanda/Agatogo.jpg?raw=true"
+                        class="rounded mx-auto d-block"
+                        alt="${nameOfFood}"
+                      />
+                    <div class="w-100 row row-cols-2 mt-1">
+                      <div class="col border-right">
+                        <h3 class="text-center text-decoration-underline">Engredients</h3>
+                      </div>
+                      <div class="col">
+                        <h3 class="text-center text-decoration-underline">Components</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <script type="" src="./queries.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript">
+      $(function () {
+        $("#btnSave").click(function () {
+          var formDate = new FormData();
+          var foodImage = $("#foodImage")[0]?.files[0];
+          formDate.append("file", foodImage);
+          formDate.append("name", $("#name").val());
+          formDate.append("engredient", $("#engredient").val());
+          console.log("food ==> ", formDate);
+          //   $.ajax({
+          //     // url: 'upload.php',
+          //     type: "POST",
+          //     data: formDate,
+          //     contentType: false,
+          //     processData: false,
+          //     success: function (response) {
+          //       // if(response != 0){
+          //       //     $("#img").attr("src", response);
+          //       //     $(".preview img").show(); // Display image element
+          //       // }else{
+          //       //     alert('file not uploaded');
+          //       // }
+          //     },
+          //   });
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<!-- // <div class="accordion mt-2" id="accordion${i+1}">
+  //   <div class="accordion-item">
+  //     <h2 class="accordion-header" id="heading${i+1}">
+  //       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${i+1}" aria-expanded="true" aria-controls="collapse${i+1}">
+  //         <span class="text-primary">Learn more</span>
+  //       </button>
+  //     </h2>
+  //     <div id="collapse${i+1}" class="accordion-collapse collapse show" aria-labelledby="heading${i+1}" data-bs-parent="#accordion${nameOfFood}">
+  //       <div class="accordion-body">
+  //         <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+  //       </div>
+  //     </div>
+  //   </div>
+  // </div> -->

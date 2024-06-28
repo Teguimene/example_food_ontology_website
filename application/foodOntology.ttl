@@ -1,0 +1,287 @@
+@prefix :     <http://www.semanticweb.org/furel/ontologies/2024/2/food#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.semanticweb.org/furel/ontologies/2024/2/food>
+	rdf:type owl:Ontology .
+:Food rdf:type owl:Class .
+:FoodIngredient rdf:type owl:Class;
+	rdfs:subClassOf :Food .
+:Plantain rdf:type owl:Class;
+	rdfs:subClassOf :FoodIngredient .
+:Oil rdf:type owl:Class;
+	rdfs:subClassOf :FoodIngredient .
+:Tomato rdf:type owl:Class;
+	rdfs:subClassOf :FoodIngredient .
+:Peanut rdf:type owl:Class;
+	rdfs:subClassOf :FoodIngredient .
+:Pepper rdf:type owl:Class;
+	rdfs:subClassOf :FoodIngredient .
+:Cube rdf:type owl:Class;
+	rdfs:subClassOf :FoodIngredient .
+:Avocado rdf:type owl:Class;
+	rdfs:subClassOf :FoodIngredient .
+:Rise rdf:type owl:Class;
+	rdfs:subClassOf :FoodIngredient .
+:Garlic rdf:type owl:Class;
+	rdfs:subClassOf :FoodIngredient .
+:Pound rdf:type owl:Class;
+	rdfs:subClassOf :FoodIngredient .
+:Water rdf:type owl:Class;
+	rdfs:subClassOf :FoodIngredient .
+:Potato rdf:type owl:Class;
+	rdfs:subClassOf :FoodIngredient .
+:Sugar rdf:type owl:Class;
+	rdfs:subClassOf :FoodIngredient .
+:Butter rdf:type owl:Class;
+	rdfs:subClassOf :FoodIngredient .
+:Egg rdf:type owl:Class;
+	rdfs:subClassOf :FoodIngredient .
+:Milk rdf:type owl:Class;
+	rdfs:subClassOf :FoodIngredient .
+:FoodComponent rdf:type owl:Class .
+:Vitamin rdf:type owl:Class;
+	rdfs:subClassOf :FoodComponent .
+:Antioxidant rdf:type owl:Class;
+	rdfs:subClassOf :FoodComponent .
+:Protein rdf:type owl:Class;
+	rdfs:subClassOf :FoodComponent .
+:Sodium rdf:type owl:Class;
+	rdfs:subClassOf :FoodComponent .
+:Potassium rdf:type owl:Class;
+	rdfs:subClassOf :FoodComponent .
+:FoodDish rdf:type owl:Class;
+	rdfs:subClassOf :Food .
+:FoodPlace rdf:type owl:Class .
+
+:hasFoodComponent rdf:type owl:ObjectProperty;
+	rdfs:domain :Food;
+	rdfs:range :FoodComponent .
+:hasFoodEngredient rdf:type  owl:ObjectProperty;
+	rdfs:domain :Food;
+	rdfs:range :FoodIngredient .
+:isFrom rdf:type owl:ObjectProperty;
+	rdfs:domain :FoodDish;
+	rdfs:range :FoodPlace .
+:nameOfFood rdf:type owl:DatatypeProperty;
+        rdfs:domain  :Food;
+        rdfs:range   xsd:string .
+:foodDescription rdf:type owl:DatatypeProperty;
+        rdfs:range   xsd:string .
+:uri rdf:type owl:DatatypeProperty;
+        rdfs:range   xsd:string .
+:foodUrlImage  rdf:type owl:DatatypeProperty;
+        rdfs:domain  :Food;
+        rdfs:range   xsd:string .
+:nameOfComponent rdf:type owl:DatatypeProperty;
+        rdfs:domain  :FoodComponent;
+        rdfs:range  xsd:string .
+:nameOfPlace rdf:type owl:DatatypeProperty;
+        rdfs:domain  :FoodPlace;
+        rdfs:range   xsd:string .
+:Agatogo  rdf:type  :FoodDish , owl:NamedIndividual;
+	:nameOfFood	"Agatogo";
+	:foodDescription "Overall, Agatogo is a flavorful and adaptable Rwandan dish that showcases the versatility of plantains. It's a great way to experience Rwandan cuisine and enjoy a hearty and delicious meal.";
+	:foodUrlImage "https://github.com/jiofidelus/tsotsa/blob/main/TSOTSAImg_dataset/Rwanda/Agatogo.jpg?raw=true";
+	:uri "http://www.semanticweb.org/furel/ontologies/2024/2/food#Agatogo";
+	:isFrom :Rwanda;
+	:hasFoodEngredient :vegetableOil, :onion, :garlic, :tomato, :greenPlantains, :collard, :water, :peanuts, :oil, :salt;
+	:hasFoodComponent :VitaminE, :Antioxidant, :Protein .
+:Rwanda rdf:type  :FoodPlace , owl:NamedIndividual;	
+	:nameOfPlace "RWANDA" .
+:vegetableOil rdf:type  :Oil , owl:NamedIndividual;
+	:nameOfFood "vegetable oil" .
+:onion rdf:type  :FoodIngredient , owl:NamedIndividual;
+	:nameOfFood "1 large onion, chopped" .
+:garlic rdf:type  :FoodIngredient , owl:NamedIndividual;
+	:nameOfFood "5 cloves garlic, sliced" .
+:tomato rdf:type  :Tomato , owl:NamedIndividual;
+	:nameOfFood "6 oz can tomato paste" .
+:greenPlantains rdf:type  :Plantain , owl:NamedIndividual;
+	:nameOfFood "4 mostly green plantains" .
+:collard rdf:type  :FoodIngredient , owl:NamedIndividual;
+	:nameOfFood "3 cups of thinly sliced, loosely packed collard greens (about 1/3 of a bunch)" .
+:water rdf:type  :FoodIngredient , owl:NamedIndividual;
+	:nameOfFood "1 quart vegetable broth (or water)" .
+:peanuts rdf:type  :Peanut , owl:NamedIndividual;
+	:nameOfFood "1/2 cup peanuts, measured then ground" .
+:oil rdf:type  :Oil , owl:NamedIndividual;
+	:nameOfFood "oil" .
+:salt rdf:type  :FoodIngredient , owl:NamedIndividual;
+	:nameOfFood "salt" .
+:VitaminE rdf:type      :Vitamin , owl:NamedIndividual;
+	:nameOfComponent "Vitamin E" .
+:Antioxidant rdf:type      :Antioxidant , owl:NamedIndividual;
+	:nameOfComponent "Antioxidant" .
+:Protein rdf:type      :Protein , owl:NamedIndividual;
+	:nameOfComponent "Protein " .
+
+
+:Akabenzi  rdf:type  :FoodDish , owl:NamedIndividual;
+	:nameOfFood	"Akabenzi";
+	:foodDescription "Akabenzi is a traditional Rwandan sausage made from minced or ground meat, typically beef, offal (organ meats), or a combination of both.";
+	:foodUrlImage "https://github.com/jiofidelus/tsotsa/blob/main/TSOTSAImg_dataset/Rwanda/Akabenzi.jpeg?raw=true";
+	:uri "http://www.semanticweb.org/furel/ontologies/2024/2/food#Akabenzi";
+	:isFrom :Rwanda;
+	:hasFoodEngredient :oil, :salt, :soySauce, :garlic, :tomatoPaste, :ginger, :chieves, :sugar, :redOnions, :celery;
+	:hasFoodComponent :Protein .
+:Rwanda rdf:type  :FoodPlace , owl:NamedIndividual;	
+	:nameOfPlace "RWANDA" .
+:oil rdf:type  :Oil , owl:NamedIndividual;
+	:nameOfFood "oil" .
+:salt rdf:type  :FoodIngredient , owl:NamedIndividual;
+	:nameOfFood "salt" .
+:soySauce rdf:type  :FoodIngredient , owl:NamedIndividual;
+	:nameOfFood "soy sauce" .
+:garlic rdf:type  :Garlic , owl:NamedIndividual;
+	:nameOfFood "garlic" .
+:tomatoPaste rdf:type  :Tomato , owl:NamedIndividual;
+	:nameOfFood "tomato paste" .
+:ginger rdf:type  :FoodIngredient , owl:NamedIndividual;
+	:nameOfFood "ginger" .
+:chieves rdf:type  :FoodIngredient , owl:NamedIndividual;
+	:nameOfFood "chieves" .
+:sugar rdf:type  :Sugar , owl:NamedIndividual;
+	:nameOfFood "sugar" .
+:redOnions rdf:type  :Onion , owl:NamedIndividual;
+	:nameOfFood "red onions" .
+:celery rdf:type  :FoodIngredient , owl:NamedIndividual;
+	:nameOfFood "celery" .
+:Protein rdf:type      :Protein , owl:NamedIndividual;
+	:nameOfComponent "Protein " .
+
+:Groundnut_Vegetable_Stew  rdf:type  :FoodDish , owl:NamedIndividual;
+	:nameOfFood	"Groundnut Vegetable Stew";
+	:foodDescription "Rwandan Groundnut Vegetable Stew, sometimes called Ibizim Icyayi(vegetables) by Amande(with peanuts), is a hearty and flavorful dish that's a staple in Rwandan cuisine.";
+	:foodUrlImage "https://github.com/jiofidelus/tsotsa/blob/main/TSOTSAImg_dataset/Rwanda/Groundnut Vegetable Stew.jpg?raw=true";
+	:uri "http://www.semanticweb.org/furel/ontologies/2024/2/food#Groundnut_Vegetable_Stew";
+	:isFrom :Rwanda;
+	:hasFoodEngredient :2_tablespoons_oil, :1_cup_diced_onion, :petite_diced_tomatoes, :kidney_beans, :sweet_potato, :eggplant;
+	:hasFoodComponent :Protein .
+:Rwanda rdf:type  :FoodPlace , owl:NamedIndividual;	
+	:nameOfPlace "RWANDA" .
+:2_tablespoons_oil rdf:type  :Oil , owl:NamedIndividual;
+	:nameOfFood "2 tablespoons oil" .
+:1_cup_diced_onion rdf:type  :Onion , owl:NamedIndividual;
+	:nameOfFood "1 cup diced onion" .
+:petite_diced_tomatoes rdf:type  :Tomato , owl:NamedIndividual;
+	:nameOfFood "1 15 oz. can petite-diced tomatoes" .
+:kidney_beans rdf:type  :FoodIngredient , owl:NamedIndividual;
+	:nameOfFood "1 15 oz. can kidney beans, drained and rinsed" .
+:sweet_potato rdf:type  :Potato , owl:NamedIndividual;
+	:nameOfFood "1 cup mashed sweet potato" .
+:eggplant rdf:type  :FoodIngredient , owl:NamedIndividual;
+	:nameOfFood "2 cups (8 oz.) eggplant, cut in ½ dice with skin on" .
+:Protein rdf:type      :Protein , owl:NamedIndividual;
+	:nameOfComponent "Protein " .
+
+:Honey_Bread  rdf:type  :FoodDish , owl:NamedIndividual;
+	:nameOfFood	"Honey Bread";
+	:foodDescription "Rwandan Honey Bread is a sweet bread with a unique flavor profile thanks to the addition of warm spices.";
+	:foodUrlImage "https://github.com/jiofidelus/tsotsa/blob/main/TSOTSAImg_dataset/Rwanda/Honey Bread.jpg?raw=true";
+	:uri "http://www.semanticweb.org/furel/ontologies/2024/2/food#Honey_Bread";
+	:isFrom :Rwanda;
+	:hasFoodEngredient :1_Egg, :Rapid_Rise, :Bread_Flour, :Lukewarm_Milk, :Honey, :Lukewarm_Water;
+	:hasFoodComponent :Protein .
+:Rwanda rdf:type  :FoodPlace , owl:NamedIndividual;	
+	:nameOfPlace "RWANDA" .
+:1_Egg rdf:type  :Egg , owl:NamedIndividual;
+	:nameOfFood "1 Egg" .
+:Rapid_Rise  rdf:type  :Rise , owl:NamedIndividual;
+	:nameOfFood "1 Envelope Rapid Rise Instant Yeast" .
+:Bread_Flour rdf:type  :FoodIngredient , owl:NamedIndividual;
+	:nameOfFood "4 2/3 Cups Bread Flour" .
+:Lukewarm_Milk rdf:type  :Milk , owl:NamedIndividual;
+	:nameOfFood "3/4 Cup Lukewarm Milk" .
+:Honey rdf:type  :FoodIngredient , owl:NamedIndividual;
+	:nameOfFood "1/2 Cup Honey" .
+:Lukewarm_Water rdf:type  :Water , owl:NamedIndividual;
+	:nameOfFood "3/4 Cup Lukewarm Water" .
+:Protein rdf:type      :Protein , owl:NamedIndividual;
+	:nameOfComponent "Protein " .
+
+:Ububobe  rdf:type  :FoodDish , owl:NamedIndividual;
+	:nameOfFood	"Ububobe";
+	:foodDescription "Ububobe description.";
+	:foodUrlImage "https://github.com/jiofidelus/tsotsa/blob/main/TSOTSAImg_dataset/Rwanda/Ububobe.jpg?raw=true";
+	:uri "http://www.semanticweb.org/furel/ontologies/2024/2/food#Ububobe";
+	:isFrom :Rwanda;
+	:hasFoodEngredient :tablespoons_oil, :1_teaspoon_paprika, :diced_onion, :2_cups_chopped_tomato, :pepper, :Salt;
+	:hasFoodComponent :Protein .
+:Rwanda rdf:type  :FoodPlace , owl:NamedIndividual;	
+	:nameOfPlace "RWANDA" .
+:tablespoons_oil rdf:type  :Egg , owl:NamedIndividual;
+	:nameOfFood "4 tablespoons oil, divided" .
+:1_teaspoon_paprika  rdf:type  :FoodIngredient , owl:NamedIndividual;
+	:nameOfFood "1 teaspoon paprika" .
+:diced_onion rdf:type  :Onion , owl:NamedIndividual;
+	:nameOfFood "1 heaping cup finely diced onion" .
+:2_cups_chopped_tomato rdf:type  :Tomato , owl:NamedIndividual;
+	:nameOfFood "2 cups chopped tomato (about 1 very large)" .
+:pepper rdf:type  :Pepper , owl:NamedIndividual;
+	:nameOfFood "pepper" .
+:Salt rdf:type  :FoodIngredient , owl:NamedIndividual;
+	:nameOfFood "Salt" .
+:Protein rdf:type      :Protein , owl:NamedIndividual;
+	:nameOfComponent "Protein " .
+
+:Pinto_Beans  rdf:type  :FoodDish , owl:NamedIndividual;
+	:nameOfFood	"Pinto Beans";
+	:foodDescription "Pinto Beans description.";
+	:foodUrlImage "https://github.com/jiofidelus/tsotsa/blob/main/TSOTSAImg_dataset/Rwanda/Pinto Beans.jpg?raw=true";
+	:uri "http://www.semanticweb.org/furel/ontologies/2024/2/food#Pinto_Beans";
+	:isFrom :Rwanda;
+	:hasFoodEngredient :pinto_beans, :water, :yellow_onion, :cloves_garlic, :bay_leaves, :Salt;
+	:hasFoodComponent :Sodium, :Potassium, :Vitamin_C .
+:Rwanda rdf:type  :FoodPlace , owl:NamedIndividual;	
+	:nameOfPlace "RWANDA" .
+:pinto_beans rdf:type  :FoodIngredient , owl:NamedIndividual;
+	:nameOfFood "1 pound dried pinto beans" .
+:water  rdf:type  :Water , owl:NamedIndividual;
+	:nameOfFood "8 cups water" .
+:yellow_onion rdf:type  :Onion , owl:NamedIndividual;
+	:nameOfFood "1/2 medium yellow onion" .
+:cloves_garlic rdf:type  :Garlic , owl:NamedIndividual;
+	:nameOfFood "3 cloves garlic" .
+:bay_leaves rdf:type  :FoodIngredient , owl:NamedIndividual;
+	:nameOfFood "2 bay leaves" .
+:Salt rdf:type  :FoodIngredient , owl:NamedIndividual;
+	:nameOfFood "2 tablespoons kosher salt" .
+:Sodium rdf:type      :Sodium , owl:NamedIndividual;
+	:nameOfComponent "Sodium (12 mg) " .
+:Potassium rdf:type      :Potassium , owl:NamedIndividual;
+	:nameOfComponent "Potassium (1393 mg)" .
+:Vitamin_C rdf:type      :Vitamin , owl:NamedIndividual;
+	:nameOfComponent "Vitamin C (6,3 mg)" .
+
+:Pan_Fried_Tilapia  rdf:type  :FoodDish , owl:NamedIndividual;
+	:nameOfFood	"Pinto Beans";
+	:foodDescription "Pan-Fried Tilapia description.";
+	:foodUrlImage "https://github.com/jiofidelus/tsotsa/blob/main/TSOTSAImg_dataset/Rwanda/Pan-Fried Tilapia.jpg?raw=true";
+	:uri "http://www.semanticweb.org/furel/ontologies/2024/2/food#Pan_Fried_Tilapia";
+	:isFrom :Rwanda;
+	:hasFoodEngredient :garlic_powder, :onion_powder, :chili_powder, :black_pepper, :vegetable_oil, :Salt;
+	:hasFoodComponent :Protein, :Potassium, :Vitamin_D .
+:Rwanda rdf:type  :FoodPlace , owl:NamedIndividual;	
+	:nameOfPlace "RWANDA" .
+:garlic_powder rdf:type  :Garlic , owl:NamedIndividual;
+	:nameOfFood "1 tsp.garlic powder" .
+:onion_powder  rdf:type  :Onion , owl:NamedIndividual;
+	:nameOfFood "1 tsp.onion powder" .
+:chili_powder rdf:type  :FoodIngredient , owl:NamedIndividual;
+	:nameOfFood "1 tsp.chili powder" .
+:black_pepper rdf:type  :Pepper , owl:NamedIndividual;
+	:nameOfFood "Freshly ground black pepper" .
+:vegetable_oil rdf:type  :Oil , owl:NamedIndividual;
+	:nameOfFood "vegetable oil" .
+:Salt rdf:type  :FoodIngredient , owl:NamedIndividual;
+	:nameOfFood "2 tablespoons kosher salt" .
+:Protein rdf:type      :Protein , owl:NamedIndividual;
+	:nameOfComponent "protein (36g)" .
+:Potassium rdf:type      :Potassium , owl:NamedIndividual;
+	:nameOfComponent "potassium (572mg)" .
+:Vitamin_D rdf:type      :Vitamin , owl:NamedIndividual;
+	:nameOfComponent "Vitamin D 5mcg" .
+	
