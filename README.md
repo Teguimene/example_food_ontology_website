@@ -1,13 +1,13 @@
-**Site web représentant une ontology basée sur les habitudes alimentaire au RWANDA**
+**Website representing an ontology based on eating habits in RWANDA**
 
-1.  Tout d'abord décompressez le dossier contenant le server Jena fuseki ;
-2.  Une fois le dossier décompressé, ouvez-le et faite un clique droit sur "fuseki-server" et choisissez l'option "Run as a program ou lancer comme un programme en français" ;
-3. Notre server est déjà lancé. Pour y accéder, ouvrez votre navigateur et tapez sur la barre de recherche "localhost:3030", vous devrez appercevoir l'interface de Jena ;
-4. Sur le menu horizontal en haut, cliquez sur "manage". Puis sur le bouton  "new  dataset" en bas sur la liste. Dans cette interface, choisissez l'option "Persistent (TDB2) – dataset will persist across Fuseki" restartsé pour permettre la sauvegarde de nos données de manière persistente et comme nom du dataset mettez "food" et cliquez sur "create dataset" ;
-5. Une fois le dataset crée, il ne reste plus qu'a le populer. Dans la liste affiché après la création, choisissez la ligne correspondante à votre dataset et cliquez sur "add data" puis sur "select file". Naviguez jusqu'à mon dossier et choisissez le fichier "foodOntology.ttl" et enfin cliquez sur "upload all" ;
-6. Il ne reste plus qu'a utiliser l'application. Ouvrez le fichier foodOntology.html sur votre navigateur et consommez l'application.
+1. First unzip the folder containing the Jena fuseki server;
+2. Once the folder is unzipped, open it and right-click on "fuseki-server" and choose the option "Run as a program or launch as a program in French";
+3. Our server is already launched. To access it, open your browser and type in the search bar "localhost:3030", you should see the Jena interface;
+4. On the horizontal menu at the top, click on "manage". Then on the "new dataset" button at the bottom of the list. In this interface, choose the option "Persistent (TDB2) - dataset will persist across Fuseki" restarted to allow the saving of our data in a persistent way and as the name of the dataset put "food" and click on "create dataset";
+5. Once the dataset is created, all that remains is to populate it. In the list displayed after creation, choose the line corresponding to your dataset and click on "add data" then on "select file". Navigate to my folder and choose the file "foodOntology.ttl" and finally click on "upload all";
 
-***NB : *** - Si vous voulez ajouter un plat, utilisez le fichier foodDatas.txt pour avoir quelques exemples de plat à utiliser car ceux-ci ont des images sur github ; <br /> - Si vous voulez exécuter une requête dans l'espace de endpoint, utilisez la requête fournit dans le fichier foodDadas car le retour de l'exécution correspond à cette requête. 
+6. All that remains is to use the application. Open the foodOntology.html file on your browser and consume the application.
 
+***NB: *** - If you want to add a dish, use the foodDatas.txt file to have some examples of dishes to use because they have images on github; <br /> - If you want to execute a query in the endpoint space, use the query provided in the foodDadas file because the return of the execution corresponds to this query.
 
-***Bonne utilisation !***
+***Happy use!***
