@@ -8,6 +8,6 @@
 
 6. All that remains is to use the application. Open the foodOntology.html file on your browser and consume the application.
 
-***NB: *** - If you want to add a dish, use the foodDatas.txt file to have some examples of dishes to use because they have images on github; <br /> - If you want to execute a query in the endpoint space, use the query provided in the foodDadas file because the return of the execution corresponds to this query.
+***NB:*** - If you want to add a dish, use the foodDatas.txt file to have some examples of dishes to use because they have images on github; <br /> - If you want to execute a query in the endpoint space, use the query provided in the foodDadas file because the return of the execution corresponds to this query.
 
 ***Happy use!***
